@@ -1,0 +1,8 @@
+# Installed dependencies and generated build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Local recovery snapshots; Git history should track source changes instead
+*.pre-*-backup
+*.phase*-current-backup

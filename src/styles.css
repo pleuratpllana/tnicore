@@ -1,0 +1,1869 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap");
+
+:root {
+  font-family: "Orbitron", sans-serif;
+  color: #e2e3e0;
+  background: #080a0b;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --night: #080a0b;
+  --metal: #a9aeac;
+  --chalk: #e7e9e6;
+  --mist: #858b8a;
+  --dim: #575d5d;
+  --hair: rgba(218, 223, 221, 0.14);
+  --display: "Orbitron", sans-serif;
+  --mono: "Orbitron", sans-serif;
+}
+* {
+  box-sizing: border-box;
+  font-family: var(--display);
+}
+html,
+body,
+#root {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+  width: 100%;
+}
+body {
+  min-height: 100svh;
+  overflow: hidden;
+  background: #080a0b;
+}
+button,
+a,
+input,
+textarea,
+select,
+optgroup {
+  font: inherit;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 1px solid #e9ece8;
+  outline-offset: 4px;
+}
+.portal-shell {
+  height: 100svh;
+  min-height: 620px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 clamp(18px, 4.5vw, 72px);
+  background: radial-gradient(
+    ellipse at 50% 48%,
+    #1b1e1f 0,
+    #101314 34%,
+    #090b0c 72%,
+    #070809 100%
+  );
+}
+
+.ambient-grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+.topbar {
+  height: 70px;
+  flex: 0 0 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 4;
+  border-bottom: 1px solid rgba(224, 227, 225, 0.09);
+}
+.brand {
+  display: flex;
+  align-items: center;
+
+  color: #e7e9e7;
+  text-decoration: none;
+  font: 600 11px var(--display);
+  letter-spacing: 0.13em;
+}
+.brand-mark {
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
+  object-position: center;
+  filter: grayscale(1) contrast(1.16) brightness(1.18);
+  mix-blend-mode: screen;
+  opacity: 0.96;
+}
+.topbar-title,
+.portal-state,
+.eyebrow,
+.console-kicker,
+.console-route,
+.portal-footer,
+.destination-kicker,
+.destination-route,
+.return-button,
+.onboarding-routes button > span,
+.onboarding-routes button > i {
+  font-family: var(--mono);
+}
+.topbar-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #898f8e;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+.topbar-title i {
+  height: 1px;
+  width: 25px;
+  background: #545a59;
+}
+.portal-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8e9493;
+  font-size: 8px;
+  letter-spacing: 0.11em;
+}
+.portal-state span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d7dad7;
+  box-shadow: 0 0 8px rgba(241, 243, 240, 0.7);
+}
+.portal-layout {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+.gate-world {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform-origin: center center;
+  will-change: transform, filter;
+}
+.portal-heading {
+  position: absolute;
+  top: clamp(16px, 3.2vh, 36px);
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+.eyebrow {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #858b89;
+}
+.eyebrow span {
+  color: #525858;
+  padding: 0 5px;
+}
+h1,
+h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+.portal-heading h1 {
+  font-size: clamp(30px, 3.2vw, 44px)!important;
+  margin: 14px 0 4px;
+  color: #e8eae7;
+}
+.portal-heading h1 em {
+  font-style: normal;
+  font-weight: 500;
+
+  color: #aeb3b1;
+}
+.portal-heading p {
+  font-size: 13px!important;
+  color: #787e7d;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.gate-stage {
+  --gate-size: min(68vh, 660px, 73vw);
+  width: var(--gate-size);
+  height: var(--gate-size);
+  flex: 0 0 auto;
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin-top: 15px;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+.gate-stage:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 12% 8% -3%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(188, 194, 191, 0.09),
+    transparent 63%
+  );
+  filter: blur(28px);
+}
+.stargate-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 28px 35px rgba(0, 0, 0, 0.78));
+  transform: rotateX(7deg);
+  transform-style: preserve-3d;
+}
+.gate-rotor {
+  transform-origin: 450px 450px;
+  will-change: transform;
+}
+.gate-outer-plates {
+  opacity: 0.96;
+}
+.gate-rivets circle {
+  fill: #16191a;
+  stroke: #b3b7b5;
+  stroke-width: 1.2;
+  filter: drop-shadow(0 1px 1px #000);
+}
+.rotor-seams path {
+  fill: none;
+  stroke: #111415;
+  stroke-width: 2.5;
+  opacity: 0.88;
+}
+.gate-glyph {
+  fill: none;
+  stroke: #d2d5d2;
+  stroke-width: 1.8;
+  stroke-linecap: square;
+  stroke-linejoin: bevel;
+  opacity: 0.83;
+}
+.gate-glyph circle {
+  fill: #aeb2b0;
+  stroke: #171a1b;
+  stroke-width: 0.7;
+}
+.gate-brand-emblem {
+  filter: grayscale(1) brightness(1.42) contrast(1.12);
+  opacity: 0.8;
+  clip-path: circle(64px at 450px 450px);
+}
+.brand-core-caption {
+  font: 500 10px var(--display);
+  letter-spacing: 2px;
+  fill: #d4d7d4;
+  paint-order: stroke;
+  stroke: #080a0b;
+  stroke-width: 3px;
+}
+.gate-chevron {
+  cursor: pointer;
+  outline: none;
+  transition: filter 0.2s;
+}
+.gate-chevron[aria-disabled="true"] {
+  cursor: wait;
+  pointer-events: none;
+}
+.gate-chevron .chevron-hit {
+  fill: transparent;
+  pointer-events: all;
+}
+.chevron-foot {
+  fill: #080a0b;
+  stroke: #090b0c;
+  stroke-width: 7;
+  stroke-linejoin: bevel;
+}
+.chevron-shell {
+  fill: url(#gate-chevron-shell);
+  stroke: #c0c4c1;
+  stroke-width: 1.5;
+  stroke-linejoin: bevel;
+}
+.chevron-bevel {
+  fill: none;
+  stroke: #111415;
+  stroke-width: 3;
+  opacity: 0.95;
+  stroke-linejoin: bevel;
+}
+.chevron-lens {
+  fill: url(#gate-chevron-lens);
+  stroke: #d5d8d5;
+  stroke-width: 1.15;
+  opacity: 0.74;
+  filter: drop-shadow(0 0 2px rgba(238, 241, 237, 0.3));
+}
+.chevron-glint {
+  fill: #f1f3ef;
+  opacity: 0.1;
+}
+.chevron-rail {
+  fill: none;
+  stroke: #b0b5b2;
+  stroke-width: 2;
+  opacity: 0.75;
+}
+.chevron-caption text {
+  font: 500 15px var(--display);
+  fill: #d8dcda;
+  paint-order: stroke;
+  stroke: #0a0c0d;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.chevron-caption .chevron-number {
+  font: 400 11px var(--mono);
+  fill: #8f9593;
+  stroke-width: 3px;
+}
+.chevron-caption path {
+  stroke: #737a78;
+  stroke-width: 1;
+  opacity: 0.76;
+}
+.gate-chevron:hover .chevron-lens,
+.gate-chevron.is-hovered .chevron-lens,
+.gate-chevron:focus-visible .chevron-lens,
+.gate-chevron.is-selected .chevron-lens {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(235, 239, 235, 0.95));
+}
+.gate-chevron:hover .chevron-glint,
+.gate-chevron.is-hovered .chevron-glint,
+.gate-chevron:focus-visible .chevron-glint,
+.gate-chevron.is-selected .chevron-glint {
+  opacity: 0.72;
+}
+.gate-chevron:hover .chevron-caption text,
+.gate-chevron.is-hovered .chevron-caption text,
+.gate-chevron:focus-visible .chevron-caption text,
+.gate-chevron.is-selected .chevron-caption text {
+  fill: #fff;
+}
+.gate-chevron:focus-visible .chevron-shell {
+  stroke: #fff;
+  stroke-width: 3;
+}
+.gate-chevron.is-selected {
+  filter: drop-shadow(0 0 6px rgba(234, 238, 233, 0.38));
+}
+.stage-register {
+  position: absolute;
+  top: 51%;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #717776;
+  font: 7px var(--mono);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.stage-register i {
+  height: 1px;
+  width: 25px;
+  background: #555b5a;
+}
+.register-west {
+  right: calc(100% + 14px);
+  transform: rotate(-90deg);
+  transform-origin: right center;
+}
+.register-east {
+  left: calc(100% + 14px);
+  transform: rotate(90deg);
+  transform-origin: left center;
+}
+.gate-console {
+  position: absolute;
+  bottom: clamp(15px, 3.2vh, 30px);
+  width: min(610px, calc(100% - 48px));
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 9px 0;
+  border-top: 1px solid rgba(222, 225, 222, 0.16);
+  border-bottom: 1px solid rgba(222, 225, 222, 0.11);
+  z-index: 2;
+}
+.console-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 190px;
+}
+.console-kicker {
+  font-size: 7px;
+  letter-spacing: 0.16em;
+  color: #737978;
+}
+.console-copy strong {
+  font: 500 12px var(--display);
+  letter-spacing: 0.035em;
+  color: #d9dcda;
+}
+.console-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 1;
+  color: #8d9392;
+  font: 9px var(--mono);
+}
+.status-pulse {
+  height: 5px;
+  width: 5px;
+  flex: 0 0 5px;
+  border: 1px solid #a8adab;
+  border-radius: 50%;
+}
+.status-pulse.is-active {
+  background: #dfe2de;
+  box-shadow: 0 0 8px #dfe2de;
+}
+.console-route {
+  color: #686e6d;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+.portal-footer {
+  height: 38px;
+  flex: 0 0 38px;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #5f6564;
+  font-size: 7px;
+  letter-spacing: 0.13em;
+}
+.portal-footer span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.portal-footer i {
+  height: 11px;
+  width: 1px;
+  background: #3d4242;
+}
+.destination-view {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 35px 22px;
+  background: radial-gradient(
+    ellipse at 50% 48%,
+    rgba(43, 47, 48, 0.96),
+    rgba(11, 13, 14, 0.98) 55%,
+    #080a0b 100%
+  );
+  animation: none;
+}
+.destination-view:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(70vh, 600px);
+  height: min(70vh, 600px);
+  border: 1px solid rgba(221, 225, 222, 0.08);
+  border-radius: 50%;
+  box-shadow:
+    0 0 90px rgba(216, 221, 217, 0.06),
+    inset 0 0 75px rgba(220, 224, 221, 0.035);
+}
+.destination-kicker {
+  color: #858b89;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.destination-kicker i {
+  height: 1px;
+  width: 26px;
+  background: #737978;
+}
+.destination-view h2 {
+  font-size: clamp(26px, 4vw, 43px);
+  color: #eff1ed;
+  margin: 20px 0 9px;
+}
+.destination-view > p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #a2a8a6;
+  max-width: 510px;
+  margin: 0 0 22px;
+}
+.destination-view ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 27px;
+  width: min(420px, 100%);
+  text-align: left;
+}
+.destination-view li {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d0d4d1;
+  font-size: 11px;
+  border-bottom: 1px solid rgba(220, 224, 221, 0.11);
+}
+.destination-view li > span {
+  width: 5px;
+  height: 5px;
+  border: 1px solid #b9bfbc;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.return-button {
+  margin-top: 19px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #d7dbd8;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #7a807e;
+  padding: 8px 1px 10px;
+  cursor: pointer;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+.return-button:hover {
+  color: white;
+  border-color: white;
+}
+.onboarding-routes {
+  width: min(390px, 100%);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 16px;
+  text-align: left;
+}
+.onboarding-routes button {
+  height: 46px;
+  border: 0;
+  border-bottom: 1px solid rgba(220, 224, 221, 0.14);
+  display: grid;
+  grid-template-columns: 38px 1fr 30px;
+  align-items: center;
+  text-align: left;
+  color: #e4e7e3;
+  background: none;
+  cursor: pointer;
+  padding: 0 4px;
+  transition:
+    padding 0.18s,
+    color 0.18s;
+}
+.onboarding-routes button:hover {
+  padding-left: 11px;
+  color: #fff;
+}
+.onboarding-routes button > span {
+  font-size: 8px;
+  color: #777e7c;
+}
+.onboarding-routes button strong {
+  font: 500 12px var(--display);
+  letter-spacing: 0.04em;
+}
+.onboarding-routes button > i {
+  font-style: normal;
+  color: #9da3a0;
+  text-align: right;
+}
+.hyperdrive {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+@media (max-width: 760px) {
+  .portal-shell {
+    min-height: 600px;
+    padding: 0 17px;
+  }
+  .topbar {
+    height: 60px;
+    flex-basis: 60px;
+  }
+  .brand {
+    font-size: 9px;
+  }
+  .brand-mark {
+    height: 34px;
+    width: 34px;
+  }
+  .topbar-title {
+    font-size: 7px;
+    gap: 7px;
+    letter-spacing: 0.13em;
+  }
+  .topbar-title i {
+    width: 13px;
+  }
+  .portal-state {
+    font-size: 7px;
+    letter-spacing: 0.06em;
+  }
+  .portal-heading {
+    top: clamp(15px, 3vh, 27px);
+  }
+  .eyebrow {
+    font-size: 7px;
+    letter-spacing: 0.14em;
+  }
+  .portal-heading h1 {
+    font-size: 21px;
+    margin: 9px 0 3px;
+  }
+  .portal-heading p {
+    font-size: 9px;
+  }
+  .gate-stage {
+    --gate-size: min(66svh, 94vw);
+    margin-top: 9px;
+  }
+  .stage-register {
+    display: none;
+  }
+  .gate-console {
+    bottom: clamp(13px, 2.5vh, 22px);
+    width: calc(100% - 10px);
+    gap: 10px;
+    min-height: 51px;
+  }
+  .console-copy {
+    min-width: 0;
+    flex: 1;
+  }
+  .console-kicker {
+    font-size: 6px;
+  }
+  .console-copy strong {
+    font-size: 9px;
+  }
+  .console-status {
+    font-size: 7px;
+    flex: 1.1;
+    gap: 6px;
+  }
+  .console-route {
+    font-size: 6px;
+  }
+  .portal-footer {
+    height: 32px;
+    flex-basis: 32px;
+    font-size: 6px;
+  }
+  .destination-view {
+    padding: 24px 17px;
+  }
+  .destination-view h2 {
+    font-size: 26px;
+    margin: 17px 0 8px;
+  }
+  .destination-view > p {
+    font-size: 11px;
+  }
+  .destination-view li {
+    font-size: 10px;
+  }
+  .return-button {
+    font-size: 7px;
+  }
+}
+@media (max-width: 390px) {
+  .topbar-title {
+    display: none;
+  }
+  .portal-state {
+    margin-left: auto;
+  }
+  .portal-heading {
+    top: 17px;
+  }
+  .gate-stage {
+    --gate-size: min(62svh, 96vw);
+  }
+  .portal-heading h1 {
+    font-size: 19px;
+  }
+  .portal-heading p {
+    font-size: 8px;
+  }
+  .gate-console {
+    width: 100%;
+    gap: 8px;
+  }
+  .console-status {
+    font-size: 6px;
+  }
+  .console-copy strong {
+    font-size: 8px;
+  }
+  .console-route {
+    font-size: 5.5px;
+  }
+  .portal-footer span:nth-child(2) {
+    font-size: 5px;
+    letter-spacing: 0.08em;
+  }
+}
+@media (max-height: 690px) and (min-width: 761px) {
+  .portal-heading {
+    top: 8px;
+  }
+  .portal-heading h1 {
+    font-size: 22px;
+    margin: 7px 0 2px;
+  }
+  .gate-stage {
+    --gate-size: min(60vh, 560px, 70vw);
+    margin-top: 10px;
+  }
+  .gate-console {
+    bottom: 8px;
+  }
+  .portal-footer {
+    height: 29px;
+    flex-basis: 29px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .gate-rotor {
+    will-change: auto;
+  }
+}
+
+/* Purposeful controls and quiet structural chrome. */
+.topbar {
+  border-bottom: 0;
+}
+.gate-console {
+  border-top: 0;
+  border-bottom: 0;
+}
+.stage-register i,
+.portal-footer span:first-child i {
+  display: none;
+}
+.destination-view:before {
+  border: 0;
+  box-shadow: none;
+  background: radial-gradient(
+    circle,
+    rgba(202, 209, 205, 0.035),
+    transparent 68%
+  );
+}
+.destination-view li {
+  border-bottom: 0;
+}
+.onboarding-routes {
+  gap: 6px;
+}
+.onboarding-routes button {
+  height: 46px;
+  border: 0;
+  padding: 0 12px;
+  background: linear-gradient(
+    100deg,
+    rgba(94, 101, 98, 0.2),
+    rgba(23, 27, 27, 0.56) 42%,
+    rgba(23, 27, 27, 0.2)
+  );
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+  transition:
+    background 0.2s,
+    padding 0.2s,
+    color 0.2s,
+    filter 0.2s;
+}
+.onboarding-routes button:hover {
+  padding-left: 17px;
+  background: linear-gradient(
+    100deg,
+    rgba(153, 160, 156, 0.26),
+    rgba(48, 53, 52, 0.72) 42%,
+    rgba(48, 53, 52, 0.28)
+  );
+  filter: brightness(1.18);
+}
+.onboarding-routes button:focus-visible {
+  outline: 2px solid #e9ece8;
+  outline-offset: 3px;
+}
+.onboarding-routes button > i {
+  font-size: 14px;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+}
+.onboarding-routes button:hover > i {
+  transform: translate(2px, -2px);
+  color: #fff;
+}
+.return-button {
+  position: relative;
+  border: 0;
+  padding: 11px 17px 11px 13px;
+  background: linear-gradient(
+    105deg,
+    rgba(108, 115, 112, 0.26),
+    rgba(25, 29, 29, 0.74)
+  );
+  clip-path: polygon(
+    0 0,
+    calc(100% - 9px) 0,
+    100% 9px,
+    100% 100%,
+    9px 100%,
+    0 calc(100% - 9px)
+  );
+  transition:
+    filter 0.2s,
+    background 0.2s,
+    transform 0.2s;
+}
+.return-button:hover {
+  color: #fff;
+  border: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(171, 177, 173, 0.34),
+    rgba(50, 55, 54, 0.84)
+  );
+  filter: brightness(1.16);
+  transform: translateY(-1px);
+}
+.gate-chevron {
+  transition: filter 0.2s ease-out;
+}
+.gate-chevron:hover {
+  filter: drop-shadow(0 0 7px rgba(235, 239, 235, 0.38));
+}
+.gate-chevron .chevron-lens,
+.gate-chevron .chevron-glint,
+.gate-chevron .chevron-caption text {
+  transition:
+    opacity 0.2s ease-out,
+    fill 0.2s ease-out,
+    filter 0.2s ease-out;
+}
+.gate-world {
+  z-index: 1;
+}
+
+/* Destination pages share the gate environment; only the mechanical hardware recedes. */
+.gate-world.is-inner-page .gate-assembly {
+  opacity: 0.38;
+  filter: brightness(0.62) blur(0.85px);
+  transition:
+    opacity 0.55s ease,
+    filter 0.55s ease;
+}
+.gate-world.is-inner-page .gate-chevron-field {
+  opacity: 1;
+  filter: none;
+}
+.gate-world.is-inner-page .gate-chevron[aria-current="true"] .chevron-lens {
+  filter: drop-shadow(0 0 6px rgba(235, 239, 235, 0.58));
+}
+.gate-world.is-inner-page .portal-heading,
+.gate-world.is-inner-page .gate-console,
+.gate-world.is-inner-page .stage-register {
+  visibility: hidden;
+}
+.destination-view {
+  pointer-events: none;
+}
+.destination-view > * {
+  pointer-events: auto;
+  user-select: text;
+}
+.gate-chevron[aria-disabled="true"] {
+  cursor: pointer;
+  pointer-events: auto;
+}
+.gate-chevron:focus-visible .chevron-hit {
+  stroke: rgba(235, 239, 235, 0.72);
+  stroke-width: 2;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate-world.is-inner-page .gate-assembly {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hyperdrive-canvas {
+    transition: none;
+  }
+}
+
+/* Keep the destination page present while the gate remains a background layer. */
+.gate-brand-emblem {
+  filter: none;
+  opacity: 1;
+  clip-path: none;
+}
+.portal-shell.is-jumping .gate-world {
+  z-index: 1;
+}
+.portal-shell.is-jumping .topbar,
+.portal-shell.is-jumping .portal-footer {
+  visibility: hidden;
+}
+.portal-shell.is-jumping .portal-heading,
+.portal-shell.is-jumping .gate-console,
+.portal-shell.is-jumping .stage-register {
+  visibility: hidden;
+}
+.portal-shell.is-jumping .precision-cursor {
+  opacity: 0;
+}
+.destination-view {
+  background: transparent;
+}
+.destination-view:before {
+  display: none;
+}
+.portal-shell.is-dialing .destination-view {
+  animation: none;
+  pointer-events: none;
+}
+.portal-shell.is-dialing .destination-view > * {
+  pointer-events: none;
+}
+.gate-world.is-inner-page .portal-heading {
+  visibility: hidden;
+}
+.destination-view {
+  animation: destination-reveal 0.42s ease-out both;
+}
+@keyframes destination-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Shared tactile language for destination and return controls. */
+.onboarding-routes button {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    105deg,
+    rgba(102, 109, 106, 0.18),
+    rgba(28, 32, 32, 0.6) 48%,
+    rgba(19, 22, 22, 0.3)
+  );
+  transition:
+    color 0.22s ease,
+    background 0.3s ease,
+    transform 0.22s ease,
+    box-shadow 0.3s ease;
+}
+.onboarding-routes button::before,
+.return-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-105%);
+  background: linear-gradient(
+    105deg,
+    transparent 18%,
+    rgba(226, 231, 227, 0.14) 50%,
+    transparent 82%
+  );
+  transition: transform 0.46s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+.onboarding-routes button:hover::before,
+.onboarding-routes button:focus-visible::before,
+.return-button:hover::before,
+.return-button:focus-visible::before {
+  transform: translateX(105%);
+}
+.onboarding-routes button:hover,
+.onboarding-routes button:focus-visible {
+  transform: translateX(2px);
+  box-shadow:
+    inset 2px 0 #aeb4b0,
+    0 5px 18px rgba(0, 0, 0, 0.2);
+}
+.onboarding-routes button:active,
+.return-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.9);
+}
+.return-button {
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    color 0.22s ease,
+    background 0.3s ease,
+    transform 0.22s ease,
+    box-shadow 0.3s ease;
+}
+.return-button:hover,
+.return-button:focus-visible {
+  box-shadow:
+    inset 2px 0 #d0d5d1,
+    0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* One persistent canvas renders the ambient field and transition, without a second layer. */
+.hyperdrive-host {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  visibility: visible;
+  opacity: 1;
+}
+.hyperdrive-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  opacity: 0.72;
+  transition: opacity 0.25s ease-out;
+}
+.hyperdrive-host.is-active .hyperdrive-canvas {
+  opacity: 1;
+}
+.hyperdrive-host.is-home-ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(28, 32, 33, 0.1);
+}
+
+/* Monochrome treatment preserves the supplied mark itself. */
+.gate-brand-emblem {
+  filter: grayscale(1) contrast(1.16) brightness(1.18);
+  opacity: 1;
+  clip-path: none;
+}
+.brand-mark {
+  filter: grayscale(1) contrast(1.12) brightness(1.45);
+  mix-blend-mode: screen;
+  opacity: 0.96;
+}
+
+/* Fine pointer precision reticle; native input remains enabled for touch. */
+.precision-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition:
+    opacity 0.16s ease,
+    filter 0.18s ease;
+}
+.precision-cursor.is-visible {
+  opacity: 1;
+}
+.precision-cursor-mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+  transform-origin: 31.25% 25%;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.7));
+  transition:
+    transform 0.15s cubic-bezier(0.2, 0.75, 0.25, 1),
+    filter 0.18s ease;
+}
+.precision-cursor-pointer {
+  fill: #e9eeec;
+  stroke: rgba(15, 18, 18, 0.72);
+  stroke-width: 8;
+  stroke-linejoin: round;
+}
+.precision-cursor-rays {
+  fill: none;
+  stroke: #d7ddda;
+  stroke-width: 34;
+  stroke-linecap: round;
+  opacity: 0.78;
+  transition:
+    opacity 0.16s ease,
+    stroke 0.16s ease,
+    stroke-width 0.16s ease;
+}
+.precision-cursor.is-interactive .precision-cursor-mark {
+  filter: drop-shadow(0 0 4px rgba(224, 232, 228, 0.48));
+  transform: scale(1.06);
+}
+.precision-cursor.is-interactive .precision-cursor-rays {
+  opacity: 1;
+  stroke: #f2f5f3;
+}
+.precision-cursor.is-pressed .precision-cursor-mark {
+  transform: scale(0.92);
+}
+.precision-cursor.is-pressed .precision-cursor-rays {
+  stroke-width: 42;
+}
+.precision-cursor.is-text {
+  opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-precision-cursor,
+  html.has-precision-cursor * {
+    cursor: none !important;
+  }
+  html.has-precision-cursor.precision-text-cursor,
+  html.has-precision-cursor.precision-text-cursor * {
+    cursor: text !important;
+  }
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .precision-cursor {
+    display: none;
+  }
+}
+
+/* Final portal refinements override legacy base rules above. */
+.topbar {
+  height: 70px;
+  flex-basis: 70px;
+  align-items: center;
+  border-bottom: 0;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+}
+.portal-state {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #b7bdb9;
+  font: 8px var(--mono);
+  letter-spacing: 0.12em;
+}
+.portal-state.is-control {
+  position: relative;
+  overflow: hidden;
+  padding: 0 12px;
+  background: linear-gradient(
+    105deg,
+    rgba(102, 109, 106, 0.18),
+    rgba(28, 32, 32, 0.6) 48%,
+    rgba(19, 22, 22, 0.3)
+  );
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.25s,
+    filter 0.2s,
+    transform 0.2s;
+}
+.portal-state.is-control:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%);
+  background: linear-gradient(
+    105deg,
+    transparent 18%,
+    rgba(226, 231, 227, 0.14) 50%,
+    transparent 82%
+  );
+  transition: transform 0.46s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+.portal-state.is-control:hover:before,
+.portal-state.is-control:focus-visible:before {
+  transform: translateX(110%);
+}
+.portal-state.is-control:hover,
+.portal-state.is-control:focus-visible {
+  color: #f0f2ef;
+  background: linear-gradient(
+    105deg,
+    rgba(145, 152, 148, 0.27),
+    rgba(42, 47, 46, 0.76) 48%,
+    rgba(28, 32, 32, 0.46)
+  );
+  filter: brightness(1.13);
+  box-shadow:
+    inset 2px 0 #c6ccc8,
+    0 5px 18px rgba(0, 0, 0, 0.2);
+}
+.portal-state.is-control:active {
+  transform: translateY(1px);
+  filter: brightness(0.92);
+}
+.portal-state.is-control:focus-visible {
+  outline: 2px solid #e9ece8;
+  outline-offset: 3px;
+}
+.portal-state-light {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background: #d7dad7;
+  box-shadow: 0 0 7px rgba(241, 243, 240, 0.56);
+}
+.portal-footer {
+  justify-content: flex-start;
+  height: 38px;
+  flex-basis: 38px;
+  color: #707674;
+  font: 8px var(--mono);
+  letter-spacing: 0.09em;
+}
+.portal-footer span:first-child {
+  gap: 0;
+}
+.destination-view {
+  background: transparent;
+}
+.destination-view:before {
+  display: none;
+}
+.destination-view > * {
+  position: relative;
+  z-index: 1;
+}
+.destination-view h2 {
+  font-size: clamp(30px, 4.7vw, 51px);
+  text-shadow: 0 5px 28px rgba(0, 0, 0, 0.78);
+}
+.destination-view > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #c0c5c2;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+.destination-view ul {
+  width: min(460px, 100%);
+  margin-bottom: 30px;
+}
+.destination-view li {
+  min-height: 39px;
+  font-size: 12px;
+  color: #e0e4e1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+.destination-view .destination-kicker {
+  color: #aeb4b1;
+  text-shadow: 0 2px 12px #000;
+}
+.gate-world.is-inner-page .gate-assembly {
+  opacity: 0.25;
+  filter: brightness(0.52) blur(1.4px);
+}
+@media (max-width: 760px) {
+  .topbar {
+    height: 60px;
+    flex-basis: 60px;
+  }
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+  .portal-state {
+    font-size: 7px;
+  }
+  .portal-state.is-control {
+    min-height: 30px;
+    padding: 0 9px;
+    letter-spacing: 0.08em;
+  }
+  .portal-footer {
+    height: 32px;
+    flex-basis: 32px;
+  }
+  .destination-view:before {
+    width: 94vw;
+    height: min(61vh, 490px);
+  }
+  .destination-view > p {
+    font-size: 11px;
+  }
+}
+
+/* The gate remains the homepage focal point, with room for its labels at every viewport. */
+.gate-world:not(.is-inner-page) .portal-heading {
+  top: -8px;
+}
+.gate-world:not(.is-inner-page) .gate-stage {
+  --gate-size: min(70vh, 700px, 82vw);
+  top: 28px;
+}
+.portal-footer {
+  font-size: clamp(6px, 0.68vw, 8px);
+  letter-spacing: 0.055em;
+}
+.destination-view > .destination-kicker,
+.destination-view > h2,
+.destination-view > p,
+.destination-view > ul {
+  pointer-events: none;
+}
+.destination-view > .onboarding-routes,
+.destination-view > .onboarding-routes button,
+.destination-view > .return-button {
+  pointer-events: auto;
+}
+.gate-stage:after {
+  pointer-events: none;
+}
+@media (max-width: 760px) {
+  .gate-world:not(.is-inner-page) .portal-heading {
+    top: -6px;
+  }
+  .gate-world:not(.is-inner-page) .gate-stage {
+    --gate-size: min(68svh, 96vw);
+    top: 24px;
+  }
+  .portal-footer {
+    font-size: 6px;
+    letter-spacing: 0.035em;
+  }
+}
+.gate-chevron .chevron-hit:focus-visible {
+  stroke: rgba(235, 239, 235, 0.82);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 5px rgba(235, 239, 235, 0.35));
+}
+.gate-world.is-inner-page .gate-rotor {
+  display: none;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.gate-world.is-inner-page .gate-chevron:not(.is-selected) {
+  opacity: 0.24;
+  filter: brightness(0.72);
+  transition:
+    opacity 0.24s ease,
+    filter 0.24s ease;
+}
+.gate-world.is-inner-page
+  .gate-chevron:not(.is-selected):is(:hover, :focus-within) {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(235, 239, 235, 0.42));
+}
+.gate-world.is-inner-page .gate-chevron.is-selected {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(235, 239, 235, 0.38));
+}
+.destination-view .destination-kicker,
+.destination-view h2,
+.destination-view > p,
+.destination-view li,
+.destination-view .return-button,
+.destination-view .onboarding-routes button {
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.96),
+    0 4px 20px rgba(0, 0, 0, 0.92);
+}
+
+/* Refined destination hierarchy and consistent, more usable controls. */
+.destination-view h2 {
+  font-size: clamp(34px, 5vw, 56px);
+  margin: 22px 0 12px;
+}
+.destination-view > p {
+  max-width: 600px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.destination-view ul {
+  width: min(520px, 100%);
+  margin-bottom: 32px;
+}
+.destination-view li {
+  min-height: 46px;
+  font-size: 14px;
+}
+.onboarding-routes {
+  width: min(480px, 100%);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.onboarding-routes button {
+  height: 54px;
+  grid-template-columns: 48px 1fr;
+  padding: 0 17px;
+}
+.onboarding-routes button > span {
+  font-size: 10px;
+}
+.onboarding-routes button strong {
+  font-size: 14px;
+}
+.return-button {
+  min-height: 48px;
+  margin-top: 22px;
+  padding: 12px 22px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+.portal-state.is-control {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 9px;
+}
+.gate-chevron:focus-within .chevron-lens {
+  opacity: 1;
+  filter: drop-shadow(0 0 9px rgba(235, 239, 235, 0.9));
+}
+.gate-chevron:focus-within .chevron-glint {
+  opacity: 0.72;
+}
+.gate-chevron:focus-within .chevron-caption text {
+  fill: #fff;
+}
+.hyperdrive-host.is-home-ambient .hyperdrive-canvas {
+  opacity: 0.62;
+}
+.hyperdrive-host.is-inner-ambient .hyperdrive-canvas {
+  opacity: 0.44;
+}
+@media (max-width: 760px) {
+  .destination-view h2 {
+    font-size: 30px;
+  }
+  .destination-view > p {
+    font-size: 12px;
+  }
+  .destination-view li {
+    font-size: 12px;
+    min-height: 42px;
+  }
+  .onboarding-routes button {
+    height: 50px;
+  }
+  .return-button {
+    min-height: 44px;
+    font-size: 9px;
+  }
+  .portal-state.is-control {
+    min-height: 34px;
+    padding: 0 11px;
+    font-size: 7px;
+  }
+}
+
+/* More legible destination content and clear availability, using existing controls. */
+.destination-view h2 {
+  font-size: clamp(36px, 5.2vw, 60px);
+  margin: 24px 0 8px;
+}
+.destination-view > p {
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.85;
+  color: #d0d5d2;
+}
+.destination-view ul {
+  width: min(560px, 100%);
+  margin-bottom: 34px;
+}
+.destination-view li {
+  min-height: 48px;
+  font-size: 15px;
+  color: #e7eae7;
+}
+.destination-view .destination-kicker {
+  font-size: 9px;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 9px;
+}
+.destination-availability {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  margin: 0 auto 10px;
+  padding: 0 10px;
+  color: #d0d6d2;
+  font: 500 9px var(--mono);
+  letter-spacing: 0.13em;
+  border-left: 1px solid rgba(210, 217, 213, 0.48);
+}
+.return-button {
+  min-width: 190px;
+  min-height: 52px;
+  justify-content: center;
+  padding: 13px 24px;
+  font-size: 11px;
+  letter-spacing: 0.17em;
+}
+.portal-state.is-control {
+  min-width: 180px;
+  min-height: 44px;
+  justify-content: center;
+  font-size: 9px;
+}
+.onboarding-routes {
+  width: min(500px, 100%);
+  gap: 9px;
+  margin-bottom: 22px;
+}
+.onboarding-routes button {
+  height: 58px;
+  grid-template-columns: 52px 1fr;
+  padding: 0 19px;
+}
+.onboarding-routes button > span {
+  font-size: 10px;
+}
+.onboarding-routes button strong {
+  font-size: 15px;
+}
+.portal-heading h1 {
+  font-size: clamp(25px, 2.8vw, 35px);
+}
+.portal-heading p {
+  max-width: min(560px, 88vw);
+  font-size: 11px;
+  color: #a3aaa7;
+  line-height: 1.55;
+}
+.eyebrow {
+  font-size: 9px;
+  color: #9ba29f;
+}
+@media (max-width: 760px) {
+  .destination-view h2 {
+    font-size: 32px;
+  }
+  .destination-view > p {
+    font-size: 13px;
+  }
+  .destination-view li {
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .destination-view .destination-kicker {
+    font-size: 8px;
+  }
+  .return-button {
+    min-width: 174px;
+    min-height: 48px;
+    font-size: 10px;
+  }
+  .portal-state.is-control {
+    min-width: 0;
+    min-height: 36px;
+    font-size: 7px;
+  }
+  .onboarding-routes button {
+    height: 53px;
+  }
+  .onboarding-routes button strong {
+    font-size: 13px;
+  }
+  .portal-heading h1 {
+    font-size: 23px;
+  }
+  .portal-heading p {
+    font-size: 10px;
+  }
+  .eyebrow {
+    font-size: 8px;
+  }
+}
+
+/* Phase 4: the portal surface stays dormant until the final chevron lock. */
+.event-horizon {
+  pointer-events: none;
+}
+.event-horizon .horizon-fluid {
+  transform-box: view-box;
+  transform-origin: 450px 450px;
+}
+.event-horizon.is-active .horizon-fluid {
+  animation: horizon-drift 7.2s ease-in-out infinite alternate;
+}
+.event-horizon .horizon-ripple {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.event-horizon.is-active .horizon-ripple {
+  animation: horizon-ripple 4.6s ease-in-out infinite;
+}
+.event-horizon.is-active .horizon-ripple-middle {
+  animation-delay: -1.55s;
+}
+.event-horizon.is-active .horizon-ripple-inner {
+  animation-delay: -3.1s;
+}
+@keyframes horizon-drift {
+  from {
+    transform: rotate(-2deg) scale(0.99);
+  }
+  to {
+    transform: rotate(2deg) scale(1.02);
+  }
+}
+@keyframes horizon-ripple {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.38;
+    transform: scale(1.035);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-horizon.is-active .horizon-fluid,
+  .event-horizon.is-active .horizon-ripple {
+    animation: none !important;
+  }
+}
+
+/* Shared Stargate refinements for the brand, destination glyphs and return control. */
+.brand-mark {
+  width: 44px;
+  height: 44px;
+}
+.precision-cursor {
+  width: 34px;
+  height: 34px;
+}
+.portal-state.is-control.return-button {
+  position: relative;
+  min-width: 190px;
+  min-height: 52px;
+  margin: 0;
+  justify-content: center;
+  gap: 0;
+  padding: 13px 24px;
+  overflow: hidden;
+  color: #d7dbd8;
+  background: linear-gradient(
+    105deg,
+    rgba(108, 115, 112, 0.26),
+    rgba(25, 29, 29, 0.74)
+  );
+  border: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 9px) 0,
+    100% 9px,
+    100% 100%,
+    9px 100%,
+    0 calc(100% - 9px)
+  );
+  box-shadow: none;
+  filter: none;
+  font-size: 11px;
+  letter-spacing: 0.17em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  isolation: isolate;
+  transition:
+    color 0.22s ease,
+    background 0.3s ease,
+    transform 0.22s ease,
+    box-shadow 0.3s ease;
+}
+.portal-state.is-control.return-button::before {
+  background: linear-gradient(
+    105deg,
+    transparent 18%,
+    rgba(226, 231, 227, 0.14) 50%,
+    transparent 82%
+  );
+}
+.portal-state.is-control.return-button > span {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.portal-state.is-control.return-button:hover,
+.portal-state.is-control.return-button:focus-visible {
+  color: #fff;
+  background: linear-gradient(
+    105deg,
+    rgba(171, 177, 173, 0.34),
+    rgba(50, 55, 54, 0.84)
+  );
+  filter: brightness(1.16);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 2px 0 #d0d5d1,
+    0 6px 20px rgba(0, 0, 0, 0.25);
+}
+.portal-state.is-control.return-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.9);
+}
+.portal-state.is-control.return-button:focus-visible {
+  outline: 2px solid #e9ece8;
+  outline-offset: 3px;
+}
+.portal-state.is-control.return-button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.destination-kicker .destination-symbol,
+.onboarding-routes .route-symbol {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: #c5cbc7;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.onboarding-routes button {
+  grid-template-columns: 22px 52px 1fr;
+}
+.onboarding-routes .route-symbol {
+  width: 16px;
+  height: 16px;
+  opacity: 0.78;
+}
+.hyperdrive-host.is-inner-ambient .hyperdrive-canvas {
+  opacity: 0.18;
+  filter: blur(6px) brightness(0.46);
+  transform: scale(1.035);
+}
+.gate-world.is-inner-page .gate-assembly {
+  opacity: 0.18;
+  filter: brightness(0.42) blur(5px);
+}
+.gate-world.is-inner-page .event-horizon {
+  opacity: 0.24;
+  filter: brightness(0.48) blur(6px);
+}
+@media (max-width: 760px) {
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+  .portal-state.is-control.return-button {
+    min-width: 174px;
+    min-height: 48px;
+    padding: 12px 18px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+  .onboarding-routes button {
+    grid-template-columns: 20px 44px 1fr;
+  }
+}
+
+/* Keep the selector message out of both sides of an active gate transition. */
+.portal-shell.is-dialing .portal-heading {
+  visibility: hidden;
+}
+.gate-world.is-inner-page
+  .gate-chevron:not(.is-selected):is(:hover, :focus-within, .is-hovered) {
+  opacity: 1;
+  filter: drop-shadow(0 0 7px rgba(235, 239, 235, 0.38));
+}
+.gate-world.is-inner-page
+  .gate-chevron:is(:hover, :focus-within, .is-hovered)
+  .chevron-lens {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(235, 239, 235, 0.95));
+}
+.gate-world.is-inner-page
+  .gate-chevron:is(:hover, :focus-within, .is-hovered)
+  .chevron-glint {
+  opacity: 0.72;
+}
+.gate-world.is-inner-page
+  .gate-chevron:is(:hover, :focus-within, .is-hovered)
+  .chevron-caption
+  text {
+  fill: #fff;
+}
